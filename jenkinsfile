@@ -1,4 +1,4 @@
-pipeline {
+```pipeline {
     agent any 
     stages {
         stage ("1. 1. install ansible pkg") {
@@ -6,6 +6,12 @@ pipeline {
                 sh "amazon-linux-extras install -y ansible2"
                 sh "mkdir -p inbound"
                 sh "mkdir -p outbound"
+            }
+        }
+         stage ("2. service install") {
+            steps {
+                sh "yum update -y"
+                sh "yum install -y httpd"
             }
         }
         stage ("2. service start") {
@@ -27,5 +33,13 @@ pipeline {
                 sh "cal"
             }
         }
+        stage ("5. create file") {
+            steps {
+                sh "echo test1.txt"
+                sh "date"
+                sh "cal"
+            }
+        }
     }
 }
+```
